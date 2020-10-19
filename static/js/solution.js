@@ -90,14 +90,11 @@ showConsole(
 
 const meshedArray = [1, "", null, 4.5, 0, null, 23];
 
-let totalZeroIndexes = 0;
 let totalOddIndexes = 0;
 let totalEvenIndexes = 0;
 let totalZeroElements = 0;
 meshedArray.forEach(function (meshedArrayElement, meshedArrayIndex) {
-    if (meshedArrayIndex === 0) {
-        totalZeroIndexes++;
-    } else if (meshedArrayIndex % 2 === 0 && meshedArrayElement !== 0) {
+    if (meshedArrayIndex % 2 === 0 && meshedArrayElement !== 0) {
         totalEvenIndexes++;
     } else if (meshedArrayIndex % 2 !== 0 && meshedArrayElement !== 0) {
         totalOddIndexes++;
@@ -106,8 +103,7 @@ meshedArray.forEach(function (meshedArrayElement, meshedArrayIndex) {
     }
 });
 showConsole(
-    `Zero indexes: ${totalZeroIndexes};
-     Odd indexes: ${totalOddIndexes};
+    `Odd indexes: ${totalOddIndexes};
      Even indexes: ${totalEvenIndexes};
      Null elements: ${totalZeroElements};
      Total indexes: ${meshedArray.length}`,
