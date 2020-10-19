@@ -88,7 +88,7 @@ showConsole(
 
 // 10.6.7
 
-const meshedArray = [1, 2, 3, null, "string", 4.5, 5, ""];
+const meshedArray = [1, "", null, 4.5, 0, null, 23];
 
 let totalZeroIndexes = 0;
 let totalOddIndexes = 0;
@@ -97,9 +97,9 @@ let totalZeroElements = 0;
 meshedArray.forEach(function (meshedArrayElement, meshedArrayIndex) {
     if (meshedArrayIndex === 0) {
         totalZeroIndexes++;
-    } else if (meshedArrayIndex % 2 === 0 && meshedArrayElement) {
+    } else if (meshedArrayIndex % 2 === 0 && meshedArrayElement !== 0) {
         totalEvenIndexes++;
-    } else if (meshedArrayIndex !== 0 && meshedArrayElement) {
+    } else if (meshedArrayIndex % 2 !== 0 && meshedArrayElement !== 0) {
         totalOddIndexes++;
     } else {
         totalZeroElements++;
