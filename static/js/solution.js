@@ -79,34 +79,59 @@ showConsole(
 
 const uniformArray = [1, 1, 1, 1, 1, 1];
 const ifUniformArray = uniformArray.every(function (uniformArrayElement) {
-    return uniformArrayElement == uniformArray[0];
+    return uniformArrayElement === uniformArray[0];
 });
 showConsole(
     `Does [${uniformArray}] contain only identical elements? 👉🏾 ${ifUniformArray}`,
     "console6"
 );
 
+// Не совсем верно, т.к. если в массиве будет к примеру такой набор элементов: 1, 1, "1", то результатом будет true, т.е. элементы идентичны, что не соответствует действительности, т.к. они разного типа. Чтобы эта проблема не возникала, сравнение должно быть строгим: === вместо ==. Выше исправила
+
 // 10.6.7
 
 const meshedArray = [1, "", null, 4.5, 0, null, 23];
 
-let totalOddIndexes = 0;
-let totalEvenIndexes = 0;
-let totalZeroElements = 0;
-meshedArray.forEach(function (meshedArrayElement, meshedArrayIndex) {
-    if (meshedArrayIndex % 2 === 0 && meshedArrayElement !== 0) {
-        totalEvenIndexes++;
-    } else if (meshedArrayIndex % 2 !== 0 && meshedArrayElement !== 0) {
-        totalOddIndexes++;
-    } else {
-        totalZeroElements++;
+// let totalOddIndexes = 0;
+// let totalEvenIndexes = 0;
+// let totalZeroElements = 0;
+// meshedArray.forEach(function (meshedArrayElement, meshedArrayIndex) {
+//     if (meshedArrayIndex % 2 === 0 && meshedArrayElement !== 0) {
+//         totalEvenIndexes++;
+//     } else if (meshedArrayIndex % 2 !== 0 && meshedArrayElement !== 0) {
+//         totalOddIndexes++;
+//     } else {
+//         totalZeroElements++;
+//     }
+// });
+// showConsole(
+//     `Odd indexes: ${totalOddIndexes};
+//      Even indexes: ${totalEvenIndexes};
+//      Null elements: ${totalZeroElements};
+//      Total indexes: ${meshedArray.length}`,
+//     "console7"
+// );
+
+// Вы иначе поняли задание. Нужно было посчитать четные, нечетные и нулевые элементы (не индексы), с учетом того, что в массиве могут быть не только числа, а абсолютно любые значения. Правильный вариант решения написала ниже.
+
+let even = 0, odd = 0, zero = 0;
+
+meshedArray.forEach(element => {
+    if (typeof element === 'number' && !isNaN(element)) {
+        if (element === 0) {
+            zero++;
+        } else if (element % 2 === 0) {
+            even++;
+        } else {
+            odd++;
+        }
     }
-});
+})
+
 showConsole(
-    `Odd indexes: ${totalOddIndexes};
-     Even indexes: ${totalEvenIndexes};
-     Null elements: ${totalZeroElements};
-     Total indexes: ${meshedArray.length}`,
+    `Odd elements: ${odd};
+     Even elements: ${even};
+     Zero elements: ${zero};`,
     "console7"
 );
 
